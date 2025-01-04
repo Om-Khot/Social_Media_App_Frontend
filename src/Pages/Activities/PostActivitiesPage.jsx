@@ -6,13 +6,20 @@ import { useContext, useEffect, useState } from "react";
 import { changeDateFormat } from "../../Helpers/Others/DateFormat";
 import DisplayOneUserPosts from "../Posts/displayOneUserPosts";
 import LoggedinUserContext from "../../Context/User/LoggedinUserContext";
+import DisplayAllLikes from "../../Components/Likes/DisplayAllLikes";
+import UserdetailsContext from "../../Context/User/UserdetailsContext";
 
 function PostActivitiesPage() {
     const {postid} = useParams();
 
     const [postDetails, setPostDetails] = useState({});
 
+    const {loggedInUserDetails} = useContext(LoggedinUserContext);    
+
     const [isLoading, setIsLoading] = useState(true);
+
+    const [commentsRender, setCommentsRender] = useState(true);
+    const [color, setColor] = useState("white");
 
     const navigate = useNavigate();
 
@@ -24,13 +31,13 @@ function PostActivitiesPage() {
         setIsLoading(false);
     }
 
-    const {loggedInUserDetails} = useContext(LoggedinUserContext);
+    
 
     const reqDate = changeDateFormat(postDetails.createdAt);
     
     
     useEffect(()=>{
-        fetchPostDetails();
+        fetchPostDetails();        
     },[postid]);
 
     const goHome = () => {
@@ -73,21 +80,45 @@ function PostActivitiesPage() {
                                                 <div>{reqDate}</div>
                                                 <div>Likes: {postDetails.likes.length} </div>
                                             </div>
-                                            { loggedInUserDetails._id === postDetails.author._id && <div className="absolute top-[350px] left-[550px]">
+                                            { loggedInUserDetails._id === postDetails.author._id && <div className="absolute top-[345px] left-[550px]">
                                                 <button
                                                     onClick={onClickHandler} 
-                                                    className="bg-red-600 text-white px-4 py-2 rounded-md">Delete Post</button>
+                                                    className="bg-red-600 text-white px-2 py-1 rounded-md">Delete Post</button>
                                             </div>}
                                         </div>
                                     </div>
                                     <div className="w-[100%] h-[55%] mt-4">
-                                        <CreateCommentsPage postDetailsID={postid}/>
+                                        <div className="w-[100%] h-[3%] flex gap-10 items-center">
+                                            <h1 
+                                                onClick={()=>{
+                                                        setCommentsRender(true)
+                                                    }}
+                                                className="text-xl font-semibold text-gray-600 cursor-pointer"
+                                            >
+                                                Comments
+                                            </h1>  
+                                            <h1 
+                                                onClick={()=>{
+                                                    setCommentsRender(false)
+                                                }}
+                                                className="text-xl font-semibold text-gray-600 cursor-pointer"
+                                            >
+                                                Likes
+                                            </h1>              
+                                        </div>
+                                        <div className="w-[100%] h-[90%] mt-4 border-2 p-2 rounded-3xl overflow-y-scroll scrollbar-hide bg-gray-100 ">
+                                            {commentsRender && <CreateCommentsPage postDetailsID={postid}/>}
+                                            {!commentsRender && <DisplayAllLikes postId={postid}/>}
+                                        </div>
+                                        
                                     </div>
                                 </div>
 
                                 <div className="w-[55%] h-[100%] px-2 py-2 bg-gray-100 rounded-xl border-2 border-gray-200">
                                     <div className="h-[5%] text-xl font-semibold text-black-600 px-10 mb-4 sticky top-0 z-10 flex justify-between items-center">
-                                        <div> More Posts By <span className="font-semibold">{postDetails.author?.firstName} {postDetails.author?.lastName}</span> </div>
+                                        <div> 
+                                            More Posts By <span className="font-semibold">{postDetails.author.firstName}</span> 
+                                        </div>
                                         <div>
                                             <button 
                                                 onClick={goHome}

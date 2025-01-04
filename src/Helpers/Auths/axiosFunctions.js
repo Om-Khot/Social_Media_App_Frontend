@@ -76,6 +76,12 @@ export const fetchAllComments = async (postid) => {
     return response;
 }
 
+export const fetchAllLikes = async (postid) => {
+    console.log("fetchAllLikes axios hit");
+    const response = await axiosInstance.get(`/post/likes/${postid}`);
+    return response;
+}
+
 
 export const deleteAccount = async (userid) => {
     console.log("deleteAccount axios hit");

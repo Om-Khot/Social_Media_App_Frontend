@@ -41,13 +41,9 @@ function CreateCommentsPage({postDetailsID}){
     }
     return(
         <div className="w-[100%] h-[100%] py-2 ">
-            <div className="w-[100%] h-[5%]">
-                <h1 className="text-xl font-semibold text-gray-600">Comments</h1>                
-            </div>
-
             {isLoading && <div className="w-[100%] h-[75%] mt-4 border-2 p-2 rounded-3xl flex justify-center items-center"><SimpleLoader/></div>}
             
-            {!isLoading && <div className="w-[100%] h-[75%] mt-4 border-2 p-2 rounded-3xl overflow-y-scroll scrollbar-hide bg-gray-100 ">
+            {!isLoading && <div className="w-[100%] h-[86%] border-2 p-2 rounded-3xl overflow-y-scroll scrollbar-hide bg-gray-100 ">
                                 <DisplayCommennts postid={postDetailsID}/>
                             </div>
             }
