@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        cursive: ['"Dancing Script"', 'cursive'], // Add your desired cursive font here
+        pacifico: ['"Pacifico"', 'cursive'],
+      },
+    },
   },
   plugins: [require('tailwind-scrollbar-hide')],
 }

@@ -19,6 +19,11 @@ import PostDetailsContext from './Context/Posts/PostDetailsContext';
 import DeleteUserAccountPage from './Pages/SettingsPages/DeleteUserAccountPage';
 import DeleteUserAuthPage from './Pages/Auths/deleteAccPage';
 import checkAuthStatus from './Pages/Auths/VerifyLoginTokenPage';
+import MsgMainPage from './Pages/Messages/MsgMainPage';
+import ChatPage from './Pages/Messages/ChatPage';
+import MsgContext from './Context/Messages/MsgContext';
+import CreatingConversation from './Pages/Conversation/CreatingConversation';
+import ErrorPage from './Pages/Error/generalErrorPage';
 
 function App() {
   const [isLoggedIn , setIsLoogedIn] = useState(false);
@@ -26,6 +31,7 @@ function App() {
   const [loggedInUserDetails, setLoggedInUserDetails] = useState({});
   const [userDetails , setUserDetails] = useState({});
 
+  const [messages, setMessages] = useState([]);
   const [postDetails, setPostDetails] = useState([]);
 
   useEffect(()=>{
@@ -72,19 +78,27 @@ function App() {
         }
     });
 
+    socket.on('messageSent',({msg}) => {
+        console.log("Socket messageSent",msg);      
+        setMessages((prev) => ([...prev,msg]));    
+        console.log("Messages are:",messages);    
+    });
+
     // cleanup listner on component unmount
     return () => {
         socket.off('userDetailsUpdated');
         socket.off('postDetailsUpdated');
+        socket.off('messageSent');
     };
 
-},[userDetails._id,setUserDetails,setPostDetails,postDetails._id]);
+},[userDetails._id,setUserDetails,setPostDetails,postDetails._id,messages,setMessages]);
   
   return (
       <AuthContext.Provider value={{isLoggedIn,setIsLoogedIn}}>
         <LoggedinUserContext.Provider value={{loggedInUserDetails , setLoggedInUserDetails}}>
           <UserdetailsContext.Provider value={{userDetails,setUserDetails}}>
             <PostDetailsContext.Provider value={{postDetails,setPostDetails}}>
+              <MsgContext.Provider value={{messages,setMessages}}>
                 <div className='w-[100vw] h-[100vh] flex justify-center items-center'>
                   <div className='w-[97%] h-[97%] px-2 py-2 border-2 rounded-[45px] '>
                     <Routes>
@@ -95,14 +109,19 @@ function App() {
                       <Route path='/post' element={<CreatePostPage/>}/>
                       <Route path='/post/:userid' element={<SpecificPostsPostPage/>} />
                       <Route path='/activities/:postid' element={<PostActivitiesPage/>}/>
+                      <Route path='/messages' element={<MsgMainPage/>}/>
+                      <Route path='/messages/:conversationId' element={<ChatPage/>}/>
+                      <Route path='/conversation' element={<CreatingConversation/>}/>
                       <Route path='/settings' element={<SettingsPage/>}/>
                       <Route path='/settings/accountManager/delete' element={<DeleteUserAccountPage/>}/>
                       <Route path='/settings/profileManager' element={<UserDetailsCreatePage/>}/>
                       <Route path='/error/auth/login/:msg' element={<LoginErrorPage/>}/>
                       <Route path='/error/auth/signup/:msg' element={<SignUpErrorPage/>}/>
+                      <Route path='/error/general/:msg' element={<ErrorPage/>}/>
                     </Routes>          
                   </div>      
                 </div> 
+              </MsgContext.Provider>
             </PostDetailsContext.Provider>
           </UserdetailsContext.Provider>
         </LoggedinUserContext.Provider>

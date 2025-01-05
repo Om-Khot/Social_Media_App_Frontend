@@ -6,6 +6,7 @@ import UserdetailsContext from "../Context/User/UserdetailsContext";
 import { Link } from "react-router-dom";
 import FetchigPostsPage from "./Posts/fetchingPostsPage";
 import LoggedinUserContext from "../Context/User/LoggedinUserContext";
+import { BsLightning } from "react-icons/bs";
 
 function UserFeedPage(){
 
@@ -53,8 +54,15 @@ function UserFeedPage(){
                         onSubmitHandler={onSearchHandler}
                         onChangeHandler={onChangeHandler}
                     />
-                </div>
-                <div className="w-[15%] h-[100%] ">
+                </div>                
+                <div className="w-[20%] h-[100%] flex gap-5 ">
+                    <div>
+                        <Link to={'/messages'}>
+                            <div className="w-[40px] h-[40px] rounded-full border-2 border-slate-500 flex justify-center items-center bg-[#f0f2f5]">
+                            <BsLightning />
+                            </div>
+                        </Link>                        
+                    </div>
                     <Link to={'/post'}>
                         <button
                             className="w-[100%] h-[80%] bg-gradient-to-br from-yellow-400 via-red-500 to-pink-500 px-4 text-[#fff] rounded-full flex justify-center gap-2 items-center">
@@ -62,7 +70,8 @@ function UserFeedPage(){
                             Create a Post
                         </button>
                     </Link>                    
-                </div>                
+                </div>
+                                
             </div>
 
             {/* Stories section */}

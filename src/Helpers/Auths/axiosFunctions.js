@@ -82,6 +82,28 @@ export const fetchAllLikes = async (postid) => {
     return response;
 }
 
+export const createConversation = async (conversationDetails) => {
+    console.log("createConversation axios hit");
+    const response = await axiosInstance.post(`/conversation`, conversationDetails);
+    return response;
+}
+
+export const allConversationsOfAUser = async (userId) => {
+    console.log("allConversationsOfAUser axios hit");
+    const response = await axiosInstance.get(`/conversation/${userId}`);
+    return response;
+}
+export const allMessages = async (conversationId) => {
+    console.log("allMessages axios hit");
+    const response = await axiosInstance.get(`/message/${conversationId}`);
+    return response;
+}
+
+export const sendMessage = async (messageDetails) => {
+    console.log("sendMessage axios hit");
+    const response = await axiosInstance.post(`/message`, messageDetails);
+    return response;
+}
 
 export const deleteAccount = async (userid) => {
     console.log("deleteAccount axios hit");
