@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { allMessages, sendMessage } from "../../Helpers/Auths/axiosFunctions";
-import { useContext, useEffect, useState } from "react";
+import { allMessages, getConversationById, sendMessage } from "../../Helpers/Auths/axiosFunctions";
+import { useContext, useEffect, useRef, useState } from "react";
 import ContactsPage from "./ContactsPage";
 import MsgCompo from "../../Components/Message/MsgCompo";
 import LoggedinUserContext from "../../Context/User/LoggedinUserContext";
@@ -20,11 +20,36 @@ function ChatPage(){
 
     const [newMsg, setNewMsg] = useState("");
 
+    const [reciver,setReciver] = useState({});
+
+    // Ref to keep track of the messages end
+    const messagesEndRef = useRef(null);
+
+    // Function to scroll to the latest message
+    const scrollToBottom = () => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     async function fetchMessages(){
+
+        const participent = await getConversationById(conversationId);
+        console.log("participent",participent.data.data);
+
+        const memberArray = participent.data.data.members;
+
+        if(memberArray[0]._id == loggedInUserDetails._id){
+            setReciver(memberArray[1]);
+        }else{
+            setReciver(memberArray[0]);
+        } 
+
         try {
             const response = await allMessages(conversationId);
             console.log("messages are:",response.data.data);
             setMessages(response.data.data);
+            scrollToBottom();
         } catch (error) {
             console.log(error);
         }
@@ -33,6 +58,10 @@ function ChatPage(){
     useEffect(() => {
         fetchMessages();
     }, [conversationId]); 
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
 
     const onclickHandler = async () => {        
         try {
@@ -61,8 +90,9 @@ function ChatPage(){
                 <div className="w-[79%] h-[100%] flex flex-col bg-[#fff] rounded-[45px]">                   
                     <div className="w-[100%] h-full border-2 border-gray-300 flex flex-col rounded-[45px] overflow-y-scroll  scrollbar-hide relative">
                         <div className="w-[109%] h-[10%] rounded-t-[45px] bg-slate-700 text-white px-10 text-md font-semibold text-gray-700 sticky top-[0px] z-10 mb-2">
-                            <div>{messages[0]?.senderId.firstName == loggedInUserDetails.firstName ? messages[1]?.senderId.firstName : messages[0]?.senderId.firstName}</div>                         
-                            <div>{messages[0]?.senderId.instaId == loggedInUserDetails.instaId ? messages[1]?.senderId.instaId : messages[0]?.senderId.instaId}</div>
+                            <div className="text-lg font-bold">{reciver.instaId}</div>
+                            <div className="text-sm font-normal">{reciver.firstName} {reciver.lastName}</div>                         
+                            
                             <div className="absolute top-2 right-[150px]">
                                 <button 
                                     onClick={()=>{
@@ -82,6 +112,8 @@ function ChatPage(){
                                                 </div>
                                             ))}
 
+                        {/*  //empty div to keep track of the messages end */}
+                        <div ref={messagesEndRef}></div>
                     </div>
                     <div className="w-[100%] h-[10%] flex items-center justify-between bg-[#fff] rounded-[45px] p-2">
                         <input 

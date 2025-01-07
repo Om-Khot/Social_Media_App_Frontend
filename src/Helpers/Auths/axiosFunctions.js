@@ -93,6 +93,13 @@ export const allConversationsOfAUser = async (userId) => {
     const response = await axiosInstance.get(`/conversation/${userId}`);
     return response;
 }
+
+export const getConversationById = async (conversationId) => {
+    console.log("getConversationById axios hit");
+    const response = await axiosInstance.get(`/conversation/one/${conversationId}`);
+    return response;
+}
+
 export const allMessages = async (conversationId) => {
     console.log("allMessages axios hit");
     const response = await axiosInstance.get(`/message/${conversationId}`);
@@ -114,5 +121,17 @@ export const deleteAccount = async (userid) => {
 export const deletePost = async (postid) => {
     console.log("deletePost axios hit");
     const response = await axiosInstance.delete(`/post/${postid}`);
+    return response;
+}
+
+export const fetchAllStories = async () => {
+    console.log("fetchAllStories axios hit");
+    const response = await axiosInstance.get(`/story`);
+    return response;
+}
+
+export const createStory = async (storyDetails) => {
+    console.log("createStory axios hit");
+    const response = await axiosInstance.post(`/story`, storyDetails);
     return response;
 }

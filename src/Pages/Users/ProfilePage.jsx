@@ -72,18 +72,20 @@ function ProfilePage({followers,following}){
                 </div> 
             </div>           
 
-            <div className="w-[100%] h-[20%] mt-2 px-4">
-                <div className="mb-2 font-bold text-gray-800">Story Highlights</div>
-                <div className="w-[55px]">
-                    <div className="text-center">
-                        <button>
-                            <div className="w-[55px] h-[55px] rounded-full border-2 flex justify-center items-center">
-                                    <FaPlus className="w-[15px] h-[15px]"/>
-                            </div>
-                            <div>New</div>
-                        </button>                        
+            <div className="w-[100%] h-[20%] mt-2 px-4 hover:bg-[#f5f5f5] hover:text-[#405cf5] hover:rounded-xl hover:p-2">
+                <Link to={'/createStory'}>
+                    <div className="mb-2 font-bold text-gray-800">Create Your New Story</div>
+                    <div className="w-[55px]">
+                        <div className="text-center">
+                            <button>
+                                <div className="w-[55px] h-[55px] rounded-full border-2 flex justify-center items-center">
+                                        <FaPlus className="w-[15px] h-[15px]"/>
+                                </div>
+                                <div>New</div>
+                            </button>                        
+                        </div>
                     </div>
-                </div>
+                </Link>                
             </div> 
 
             <div className="w-[100%] h-[20%] mt-4 mx-2  rounded-xl p-2">

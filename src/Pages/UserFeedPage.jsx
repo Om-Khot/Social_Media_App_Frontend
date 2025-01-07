@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import FetchigPostsPage from "./Posts/fetchingPostsPage";
 import LoggedinUserContext from "../Context/User/LoggedinUserContext";
 import { BsLightning } from "react-icons/bs";
+import DisplayStories from "./Stories/DisplayStories";
 
 function UserFeedPage(){
 
@@ -76,28 +77,12 @@ function UserFeedPage(){
 
             {/* Stories section */}
             <div className="w-[100%] h-[25%] mt-5 px-8 sticky top-[25px] z-40">
-                <div>
+                <div className="h-[20%]">
                     <h1 className="text-2xl font-semibold">Stories</h1>
                 </div>
 
-                <div className="w-[100%] h-[100%] mt-3 flex gap-2 overflow-x-scroll scrollbar-hide">
-                    <div className="w-[85px] h-[85px] rounded-full border-2 flex-shrink-0"></div>
-                    <div className="w-[85px] h-[85px] rounded-full border-2 flex-shrink-0"></div>
-                    <div className="w-[85px] h-[85px] rounded-full border-2 flex-shrink-0"></div>
-                    <div className="w-[85px] h-[85px] rounded-full border-2 flex-shrink-0"></div>
-                    <div className="w-[85px] h-[85px] rounded-full border-2 flex-shrink-0"></div>
-                    <div className="w-[85px] h-[85px] rounded-full border-2 flex-shrink-0"></div>
-                    <div className="w-[85px] h-[85px] rounded-full border-2 flex-shrink-0"></div>
-                    <div className="w-[85px] h-[85px] rounded-full border-2 flex-shrink-0"></div>
-                    <div className="w-[85px] h-[85px] rounded-full border-2 flex-shrink-0"></div>
-                    <div className="w-[85px] h-[85px] rounded-full border-2 flex-shrink-0"></div>
-                    <div className="w-[85px] h-[85px] rounded-full border-2 flex-shrink-0"></div>
-                    <div className="w-[85px] h-[85px] rounded-full border-2 flex-shrink-0"></div>
-                    <div className="w-[85px] h-[85px] rounded-full border-2 flex-shrink-0"></div>
-                    <div className="w-[85px] h-[85px] rounded-full border-2 flex-shrink-0"></div>
-                    <div className="w-[85px] h-[85px] rounded-full border-2 flex-shrink-0"></div>
-                    <div className="w-[85px] h-[85px] rounded-full border-2 flex-shrink-0"></div>
-                    
+                <div className="w-[100%] h-[80%] overflow-x-scroll scrollbar-hide">
+                    <DisplayStories/>                    
                 </div>
                 
             </div>

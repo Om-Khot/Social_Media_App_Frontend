@@ -24,14 +24,23 @@ import ChatPage from './Pages/Messages/ChatPage';
 import MsgContext from './Context/Messages/MsgContext';
 import CreatingConversation from './Pages/Conversation/CreatingConversation';
 import ErrorPage from './Pages/Error/generalErrorPage';
+import StoriesContext from './Context/Stories/StoriesContext';
+import StorySlider from './Pages/Stories/OpenStories';
+import CreatingStoryPage from './Pages/Stories/CreatingStoryPage';
+
 
 function App() {
   const [isLoggedIn , setIsLoogedIn] = useState(false);
   const [isLoading , setIsLoading] = useState(true);
+
   const [loggedInUserDetails, setLoggedInUserDetails] = useState({});
   const [userDetails , setUserDetails] = useState({});
 
   const [messages, setMessages] = useState([]);
+
+  const [stories, setStories] = useState([]);
+  const [WhoseStories, setWhoseStories] = useState([]);
+
   const [postDetails, setPostDetails] = useState([]);
 
   useEffect(()=>{
@@ -99,6 +108,8 @@ function App() {
           <UserdetailsContext.Provider value={{userDetails,setUserDetails}}>
             <PostDetailsContext.Provider value={{postDetails,setPostDetails}}>
               <MsgContext.Provider value={{messages,setMessages}}>
+                <StoriesContext.Provider value={{stories,setStories}}>
+                  
                 <div className='w-[100vw] h-[100vh] flex justify-center items-center'>
                   <div className='w-[97%] h-[97%] px-2 py-2 border-2 rounded-[45px] '>
                     <Routes>
@@ -112,6 +123,8 @@ function App() {
                       <Route path='/messages' element={<MsgMainPage/>}/>
                       <Route path='/messages/:conversationId' element={<ChatPage/>}/>
                       <Route path='/conversation' element={<CreatingConversation/>}/>
+                      <Route path='/stories' element={<StorySlider/>}/>
+                      <Route path='/createStory' element={<CreatingStoryPage/>}/>
                       <Route path='/settings' element={<SettingsPage/>}/>
                       <Route path='/settings/accountManager/delete' element={<DeleteUserAccountPage/>}/>
                       <Route path='/settings/profileManager' element={<UserDetailsCreatePage/>}/>
@@ -121,6 +134,8 @@ function App() {
                     </Routes>          
                   </div>      
                 </div> 
+                               
+                </StoriesContext.Provider>
               </MsgContext.Provider>
             </PostDetailsContext.Provider>
           </UserdetailsContext.Provider>
