@@ -12,7 +12,7 @@ import socket from "../../Helpers/SocketIo/SockcetIoSetup";
 import LoggedinUserContext from "../../Context/User/LoggedinUserContext";
 
 
-function ProfilePage({followers,following}){
+function ProfilePage(){
 
     const {userDetails} = useContext(UserdetailsContext);
     const {setUserDetails} = useContext(UserdetailsContext);
@@ -20,7 +20,7 @@ function ProfilePage({followers,following}){
 
     const navigate = useNavigate();
 
-    const {posts} = userDetails;
+    const {posts,followers,following} = userDetails;
 
     console.log("user details from profile page after socket!",userDetails);
 
@@ -61,15 +61,21 @@ function ProfilePage({followers,following}){
                         {posts.length}
                     </div>
                 </Link>
-                                
-                <div>
-                    <p>Followers</p>
-                    {followers}
-                </div>                
-                <div>
-                    <p>Following</p>
-                    {following}
-                </div> 
+
+                <Link to={`/followfollowing/${userDetails._id}?type=Followers`}>
+                    <div className="hover:bg-[#f5f5f5] hover:text-[#405cf5] hover:rounded-xl hover:p-2">
+                        <p>Followers</p>
+                        {followers.length}
+                    </div>
+                </Link>          
+
+                <Link to={`/followfollowing/${userDetails._id}?type=Following`}>
+                    <div className="hover:bg-[#f5f5f5] hover:text-[#405cf5] hover:rounded-xl hover:p-2">
+                        <p>Following</p>
+                        {following.length}
+                    </div>
+                </Link>                
+                 
             </div>           
 
             <div className="w-[100%] h-[20%] mt-2 px-4 hover:bg-[#f5f5f5] hover:text-[#405cf5] hover:rounded-xl hover:p-2">

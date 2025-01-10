@@ -135,3 +135,87 @@ export const createStory = async (storyDetails) => {
     const response = await axiosInstance.post(`/story`, storyDetails);
     return response;
 }
+
+export const createFollowReq = async (followDetails) => {
+    console.log("createFollowReq axios hit");
+    try {
+        const response = await axiosInstance.post(`/followRequest`, followDetails);
+        return response;
+    } catch (error) {
+        console.log(error);
+        alert(error.response.data.message);
+    }   
+    
+}
+
+export const getAllFollowRequests = async (userId) => {
+    console.log("getAllFollowRequests axios hit");
+    const response = await axiosInstance.get(`/followRequest/${userId}`);
+    return response;
+}
+
+export const deleteFollowReq = async (followDetails) => {
+    console.log("deleteFollowReq axios hit");
+    const response = await axiosInstance.delete(`/followRequest`, {
+        data : followDetails
+    });
+    return response;
+}
+
+export const getFollowReqAcknowledgement = async (userId) => {
+    console.log("getFollowReqAcknowledgement axios hit");
+    try {
+        const response = await axiosInstance.get(`/followRequest/ack/${userId}`);
+        return response;
+    } catch (error) {
+        console.log("response from getFollowReqAcknowledgement axios",error);
+        return error;
+    }   
+    
+}
+
+export const deleteFollowReqAck = async (followDetails) => {
+    console.log("deleteFollowReqAck axios hit");
+    const response = await axiosInstance.delete(`/followRequest/ack`, {
+        data : followDetails
+    });
+    return response;
+}
+
+export const getAllFollowers = async (userId) => {
+    console.log("getAllFollowers axios hit");
+    const response = await axiosInstance.get(`/follow/followers/${userId}`);
+    return response;
+}
+
+export const getAllFollowing = async (userId) => {
+    console.log("getAllFollowing axios hit");
+    const response = await axiosInstance.get(`/follow/following/${userId}`);
+    return response;
+}
+
+export const followUser = async (followDetails) => {
+    console.log("followUser axios hit");
+    const response = await axiosInstance.post(`/follow`, followDetails);
+    return response;
+}
+
+export const unfollowUser = async (followDetails) => {
+    console.log("unfollow axios hit");
+    try {
+        const response = await axiosInstance.post(`/follow/unfollow`, followDetails);
+        alert("You are no longer following ");
+        return response;
+    } catch (error) {
+        console.log(error);
+        alert(error.response.data.message);
+    }    
+}
+
+export const removeFromFollowers = async (followDetails) => {
+    console.log("removeFromFollowers axios hit");
+    const response = await axiosInstance.delete(`/follow`, {
+        data : followDetails
+    });
+    return response;
+}

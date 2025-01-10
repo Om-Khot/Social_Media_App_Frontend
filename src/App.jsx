@@ -27,6 +27,10 @@ import ErrorPage from './Pages/Error/generalErrorPage';
 import StoriesContext from './Context/Stories/StoriesContext';
 import StorySlider from './Pages/Stories/OpenStories';
 import CreatingStoryPage from './Pages/Stories/CreatingStoryPage';
+import FollowFollowingPage from './Pages/Activities/Follow-FollowingPage';
+import FollowReq from './Context/FollowReq/FollowReqContext';
+import FollowReqContext from './Context/FollowReq/FollowReqContext';
+import FollowAckContext from './Context/FollowReq/FollowAckContext';
 
 
 function App() {
@@ -42,6 +46,9 @@ function App() {
   const [WhoseStories, setWhoseStories] = useState([]);
 
   const [postDetails, setPostDetails] = useState([]);
+
+  const [followReq, setFollowReq] = useState([]);
+  const [followAcknowledgement, setFollowAcknowledgement] = useState([]);
 
   useEffect(()=>{
     // checking if user is already logged in after refresh
@@ -93,14 +100,33 @@ function App() {
         console.log("Messages are:",messages);    
     });
 
+    socket.on('followReq',({userId,updatedData}) => {
+        console.log("Socket followReq",updatedData); 
+        if(userId === loggedInUserDetails._id){
+          setFollowReq(updatedData.followRequests);    
+        }      
+        console.log("Follow req are:",updatedData);    
+    });
+
+    socket.on('followAckReq',({userId,updatedData}) => {
+        console.log("Socket followAckReq",updatedData); 
+        if(userId === loggedInUserDetails._id){
+          setFollowAcknowledgement(updatedData.ownRequests); 
+          console.log("Follow req are:",updatedData);   
+        }      
+        
+    })
+
     // cleanup listner on component unmount
     return () => {
         socket.off('userDetailsUpdated');
         socket.off('postDetailsUpdated');
         socket.off('messageSent');
+        socket.off('followReq');
+        socket.off('followAckReq');
     };
 
-},[userDetails._id,setUserDetails,setPostDetails,postDetails._id,messages,setMessages]);
+},[userDetails._id,setUserDetails,userDetails,setPostDetails,postDetails._id,messages,setMessages,followReq,setFollowReq]);
   
   return (
       <AuthContext.Provider value={{isLoggedIn,setIsLoogedIn}}>
@@ -109,7 +135,8 @@ function App() {
             <PostDetailsContext.Provider value={{postDetails,setPostDetails}}>
               <MsgContext.Provider value={{messages,setMessages}}>
                 <StoriesContext.Provider value={{stories,setStories}}>
-                  
+                  <FollowReqContext.Provider value={{followReq,setFollowReq}}>
+                    <FollowAckContext.Provider value={{followAcknowledgement,setFollowAcknowledgement}}>
                 <div className='w-[100vw] h-[100vh] flex justify-center items-center'>
                   <div className='w-[97%] h-[97%] px-2 py-2 border-2 rounded-[45px] '>
                     <Routes>
@@ -125,6 +152,7 @@ function App() {
                       <Route path='/conversation' element={<CreatingConversation/>}/>
                       <Route path='/stories' element={<StorySlider/>}/>
                       <Route path='/createStory' element={<CreatingStoryPage/>}/>
+                      <Route path='/followfollowing/:userid' element={<FollowFollowingPage/>}/>
                       <Route path='/settings' element={<SettingsPage/>}/>
                       <Route path='/settings/accountManager/delete' element={<DeleteUserAccountPage/>}/>
                       <Route path='/settings/profileManager' element={<UserDetailsCreatePage/>}/>
@@ -134,7 +162,8 @@ function App() {
                     </Routes>          
                   </div>      
                 </div> 
-                               
+                    </FollowAckContext.Provider>
+                  </FollowReqContext.Provider>             
                 </StoriesContext.Provider>
               </MsgContext.Provider>
             </PostDetailsContext.Provider>
