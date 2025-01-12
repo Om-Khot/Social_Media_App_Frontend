@@ -56,13 +56,13 @@ function PostCompo({postId,postImg, postCaption,firstName,lastName,createTime,us
     };
     
     return(
-        <div className="inline-block border-2 border-gray-200 bg-[#fff] rounded-3xl px-2 py-2 shadow-xs shadow-[#000] " onClick={handleClick}>
+        <div className="inline-block min-w-[250px] cursor-pointer md:max-w-[250px] border-2 border-gray-200 bg-[#fff] rounded-3xl px-2 py-2 shadow-xs shadow-[#000] lg:max-w-[400px] " onClick={handleClick}>
 
             <div className="flex gap-2">
-                <div className="w-[50px] h-[50px] rounded-full bg-gray-100 flex justify-center items-center">
+                <div className="md:w-[50px] h-[50px] rounded-full bg-gray-100 flex justify-center items-center">
                     {userImage ? <img src={userImage} className="w-[50px] h-[50px] rounded-full" /> : <LuUserRound className="w-[40px] h-[40px] rounded-full" />}
                 </div>                
-                <div className="text-md font-semibold flex flex-col mb-4">
+                <div className="md:text-md font-semibold flex flex-col mb-4">
                     <div>{firstName} {lastName} </div>
                     <div><p className="text-sm text-gray-500">{createTime}</p></div> 
                 </div>
@@ -70,7 +70,7 @@ function PostCompo({postId,postImg, postCaption,firstName,lastName,createTime,us
 
             
 
-            <img src={postImg} className="w-auto h-auto border-gray-800 rounded-xl max-w-[300px] max-h-[350px] object-contain" />
+            <img src={postImg} className="w-auto h-auto border-gray-800 rounded-xl max-w-[250px] max-h-[350px] md:max-w-[230px] max-h-[350px] object-contain lg:max-w-[300px]" />
 
             <div className="flex items-center mt-2 gap-4">
                 <div className="text-lg font-semibold ml-2 flex items-center gap-2">

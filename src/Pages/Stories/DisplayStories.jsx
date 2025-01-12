@@ -24,7 +24,7 @@ function DisplayStories() {
     }, []);
 
     return(
-        <div className="w-[100%] h-[100%] flex items-center justify-start">
+        <div className="w-[100%] h-[100%] flex items-center">
             {stories && stories.map((story,index)=><StoriesCompo key={index} storyDetails={story}/>)
                                    
             }

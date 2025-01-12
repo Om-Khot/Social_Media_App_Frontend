@@ -40,7 +40,7 @@ function ProfilePage(){
     }
 
     return(
-        <div className="w-[100%] h-[100%]   flex-cols justify-center items-center">
+        <div className="w-[100%] h-[100%] flex-cols justify-center items-center">
             <div className="w-[110px] h-[110px] border-2 rounded-full mx-auto">
                 <ProfileImage imgurl={userDetails.profileImage}/> 
             </div>

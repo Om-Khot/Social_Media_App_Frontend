@@ -48,7 +48,7 @@ function CreateCommentsPage({postDetailsID}){
                             </div>
             }
             
-            {!isLoading && <div className="w-[100%] h-[10%] flex justify-between items-center mt-4">
+            {!isLoading && <div className="w-[100%] h-[20%] flex justify-between items-center mt-4">
                                 <input  type="text" 
                                         placeholder="Write a comment"
                                         onChange={onChangeHandler} 

@@ -38,19 +38,24 @@ function CreatingConversation() {
     return(
         <div className="w-[100%] h-[100%]">
 
-            <div className="w-[40%] h-[10%] rounded-[45px] mb-5">
+            <div className="w-[100%] mt-2 flex items-center  md:w-[40%] h-[10%] rounded-[45px] mb-5">
                 <input 
                     type="search" 
                     placeholder="Search" 
-                    className="w-[90%] h-[100%] py-2 px-4 border-[#f5f5f5] border-b-2  rounded-full px-2"
+                    className="w-[90%] h-[100%] py-1 px-4 border-[#f5f5f5] border-b-2  rounded-full px-2"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    onDoubleClick={onSubmitHandler}
-                />                
+                />  
+
+                <button 
+                    onClick={onSubmitHandler}
+                    className="bg-blue-200 text-black px-4 py-2 rounded-md">
+                    Create
+                </button>              
             </div>  
             
-            <div className="w-[40%] h-[80%] rounded-[45px]">
-                                <ContactsPage/>
+            <div className="w-[100%] h-[85%] rounded-xl  md:w-[40%] h-[80%] rounded-[45px]">
+                <ContactsPage/>
             </div>         
             
         </div>

@@ -21,10 +21,10 @@ function FetchigPostsPage() {
     },[]);
 
     return (
-        <div className="w-[100%] h-[100%] flex gap-5 flex-wrap justify-evenly mt-2 ">
+        <div className="w-[100%] h-[100%] flex gap-5 flex-wrap justify-evenly mt-2">
             {postDetails && postDetails.map((post)=>{
                 return(
-                    <div key={post._id}>
+                    <div key={post._id} className="w-[100%] flex justify-center items-center lg:w-auto">
                         <PostCompo postId={post._id} postImg={post.postImage} postCaption={post.caption} firstName={post.author.firstName} lastName={post.author.lastName} createTime={post.createdAt} userImage={post.author.profileImage} noOfLikesArray={post.likes} noOfLikes={post.likes.length} noOfComments={post.comments.length} />
                     </div>
                 )

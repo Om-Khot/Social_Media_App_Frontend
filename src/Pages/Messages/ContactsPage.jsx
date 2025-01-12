@@ -28,7 +28,7 @@ function ContactsPage() {
     }, [loggedInUserDetails._id]);
 
     return (
-        <div className="w-[100%] h-[100%] border-2 border-gray-300 flex flex-col items-center bg-[#f5f5f5] rounded-[45px]">
+        <div className="w-[100%] h-[100%] border-2 border-gray-300 flex flex-col items-center bg-[#f5f5f5] md:rounded-[45px]">
             <div className="w-[100%] h-[10%] flex gap-5 items-center justify-center text-xl font-semibold text-gray-800">
                 <div>Contacts</div>
                 <div

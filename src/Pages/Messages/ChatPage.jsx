@@ -82,18 +82,18 @@ function ChatPage(){
     }
 
     return(
-        <div className="w-full h-full p-1 border-2 border-gray-300 flex flex-col items-center bg-[#fff] rounded-[45px]">
+        <div className="w-full h-full p-1 border-2 border-gray-300 flex flex-col items-center bg-[#fff] rounded-xl md:rounded-[45px]">
             <div className="w-[100%] h-[100%] flex items-center justify-between bg-[#fff] rounded-[45px]">
-                <div className="w-[20%] h-[100%] rounded-[45px]">
+                <div className="hidden md:block md:w-[32%] lg:w-[20%] h-[100%] md:rounded-[45px]">
                     <ContactsPage/>
                 </div>
-                <div className="w-[79%] h-[100%] flex flex-col bg-[#fff] rounded-[45px]">                   
-                    <div className="w-[100%] h-full border-2 border-gray-300 flex flex-col rounded-[45px] overflow-y-scroll  scrollbar-hide relative">
-                        <div className="w-[109%] h-[10%] rounded-t-[45px] bg-slate-700 text-white px-10 text-md font-semibold text-gray-700 sticky top-[0px] z-10 mb-2">
+                <div className="w-[100%] md:w-[67.5%] lg:w-[79.5%] h-[100%] flex flex-col bg-[#fff] md:rounded-[45px]">                   
+                    <div className="w-[100%] h-full border-2 border-gray-300 flex flex-col overflow-y-scroll  scrollbar-hide relative rounded-xl md:rounded-[45px]">
+                        <div className="w-[109%] h-[10%] md:rounded-t-[45px] bg-slate-700 text-white px-10 text-md font-semibold text-gray-700 sticky top-[0px] z-10 mb-2">
                             <div className="text-lg font-bold">{reciver.instaId}</div>
                             <div className="text-sm font-normal">{reciver.firstName} {reciver.lastName}</div>                         
                             
-                            <div className="absolute top-2 right-[150px]">
+                            <div className="absolute top-2 right-4 md:right-10 lg:right-[150px]">
                                 <button 
                                     onClick={()=>{
                                         navigate('/messages');
@@ -115,17 +115,17 @@ function ChatPage(){
                         {/*  //empty div to keep track of the messages end */}
                         <div ref={messagesEndRef}></div>
                     </div>
-                    <div className="w-[100%] h-[10%] flex items-center justify-between bg-[#fff] rounded-[45px] p-2">
+                    <div className="w-[100%] h-[10%] flex items-center justify-between bg-[#fff] md:rounded-[45px] p-2">
                         <input 
                             type="text"
                             value={newMsg} 
                             placeholder="Type a message" 
-                            className="w-[90%] h-[100%] border-2 border-gray-300 rounded-[45px] p-2"
+                            className="w-[90%] md:w-[90%] h-[100%] border-2 border-gray-300 rounded-[45px] p-2"
                             onChange={(e) => setNewMsg(e.target.value)}
                             />
                         <button
                             onClick={onclickHandler} 
-                            className="w-[10%] h-[100%] bg-[#4b5563] rounded-[45px] text-white"
+                            className="w-[10%] md:w-[10%] h-[100%] bg-[#4b5563] rounded-[45px] text-white"
                         >   
                             Send
                         </button>

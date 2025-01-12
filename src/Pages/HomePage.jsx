@@ -20,17 +20,17 @@ function HomePage(){
     return(
         <div className="w-[100%] h-[100%] flex">
             {/* Login User Deatils */}
-            <div className="w-[20%] flex-cols">
+            <div className="hidden md:flex md:w-[30%] flex flex-col lg:w-[25%] xl:w-[20%]">
                 <div className="w-[100%] h-[10%] flex" onClick={onClickHandler}>
                     <InstaLogo/>
                     <MySvgComponent/>
                 </div>
-                <div className="w-[100%] h-[85%] flex-cols justify-center items-center">
+                <div className="w-[100%] h-[85%]">
                     <ProfilePage followers={23} following={500}/>
                 </div>                
             </div>
             {/* Content Page */}
-            <div className="w-[80%] h-[100%]">
+            <div className="w-[100%] h-[100%] md:w-[70%] h-[100%] lg:w-[75%] xl:w-[80%]">
                 <UserFeedPage/>
             </div>
                 

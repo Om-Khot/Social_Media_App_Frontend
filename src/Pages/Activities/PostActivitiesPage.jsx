@@ -65,14 +65,14 @@ function PostActivitiesPage() {
 
     }
     return(
-        <div className="w-[100%] h-[100%] px-5 py-5">
+        <div className="w-[100%] h-[100%] py-2">
             {isLoading && <div className="text-2xl">Loading...</div>}
             {!isLoading && <div className="w-[100%] h-[100%] flex gap-2">
 
-                                <div className="w-[45%] flex flex-col max-h-screen  ">
-                                    <div className="inline-block flex items-center gap-4 border-b-2 border-gray-200">
-                                        <img src={postDetails.postImage} alt="Post Image" className="w-auto h-[300px] border-gray-200 border-2 rounded-3xl max-w-[400px] max-h-[350px] object-cover" />
-                                        <div>
+                                <div className="w-[100%] h-[100%] px-2 md:w-[45%] flex flex-col md:max-h-screen ">
+                                    <div className="inline-block flex flex-col md:w-[100%] md:flex-row md:w-[100%] md:h-[100%] md:gap-4 border-b-2 border-gray-200 xl:flex xl:flex-col">
+                                        <img src={postDetails.postImage} alt="Post Image" className="w-[95%] h-[100%] object-contain md:w-auto md:h-[300px] border-gray-200 border-2 rounded-3xl max-w-[320px] max-h-[350px] object-cover lg:max-w-[420px]" />
+                                        <div className="min-w-[100%]">
                                             <div className="mt-4 mb-4">
                                                 <div>{postDetails.caption} </div>
                                             </div>
@@ -80,7 +80,7 @@ function PostActivitiesPage() {
                                                 <div>{reqDate}</div>
                                                 <div>Likes: {postDetails.likes.length} </div>
                                             </div>
-                                            { loggedInUserDetails._id === postDetails.author._id && <div className="absolute top-[345px] left-[550px]">
+                                            { loggedInUserDetails._id === postDetails.author._id && <div className="text-xs absolute top-[265px] left-[220px] md:absolute md:text-md md:top-[345px] md:left-[35%]">
                                                 <button
                                                     onClick={onClickHandler} 
                                                     className="bg-red-600 text-white px-2 py-1 rounded-md">Delete Post</button>
@@ -88,12 +88,12 @@ function PostActivitiesPage() {
                                         </div>
                                     </div>
                                     <div className="w-[100%] h-[55%] mt-4">
-                                        <div className="w-[100%] h-[3%] flex gap-10 items-center">
+                                        <div className="w-[100%] h-[1%] flex gap-10 items-center">
                                             <h1 
                                                 onClick={()=>{
                                                         setCommentsRender(true)
                                                     }}
-                                                className="text-xl font-semibold text-gray-600 cursor-pointer"
+                                                className="text-md font-semibold text-gray-600 cursor-pointer"
                                             >
                                                 Comments
                                             </h1>  
@@ -101,7 +101,7 @@ function PostActivitiesPage() {
                                                 onClick={()=>{
                                                     setCommentsRender(false)
                                                 }}
-                                                className="text-xl font-semibold text-gray-600 cursor-pointer"
+                                                className="text-md font-semibold text-gray-600 cursor-pointer"
                                             >
                                                 Likes
                                             </h1>              
@@ -114,7 +114,7 @@ function PostActivitiesPage() {
                                     </div>
                                 </div>
 
-                                <div className="w-[55%] h-[100%] px-2 py-2 bg-gray-100 rounded-xl border-2 border-gray-200">
+                                <div className="hidden md:block w-[55%] h-[75%] ml-auto mt-auto px-1 py-2 bg-gray-100 rounded-xl border-2 border-gray-200  xl:h-[100%]">
                                     <div className="h-[5%] text-xl font-semibold text-black-600 px-10 mb-4 sticky top-0 z-10 flex justify-between items-center">
                                         <div> 
                                             More Posts By <span className="font-semibold">{postDetails.author.firstName}</span> 

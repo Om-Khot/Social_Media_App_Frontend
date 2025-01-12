@@ -31,6 +31,7 @@ import FollowFollowingPage from './Pages/Activities/Follow-FollowingPage';
 import FollowReq from './Context/FollowReq/FollowReqContext';
 import FollowReqContext from './Context/FollowReq/FollowReqContext';
 import FollowAckContext from './Context/FollowReq/FollowAckContext';
+import ProfilePage from './Pages/Users/ProfilePage';
 
 
 function App() {
@@ -43,7 +44,6 @@ function App() {
   const [messages, setMessages] = useState([]);
 
   const [stories, setStories] = useState([]);
-  const [WhoseStories, setWhoseStories] = useState([]);
 
   const [postDetails, setPostDetails] = useState([]);
 
@@ -137,13 +137,14 @@ function App() {
                 <StoriesContext.Provider value={{stories,setStories}}>
                   <FollowReqContext.Provider value={{followReq,setFollowReq}}>
                     <FollowAckContext.Provider value={{followAcknowledgement,setFollowAcknowledgement}}>
-                <div className='w-[100vw] h-[100vh] flex justify-center items-center'>
-                  <div className='w-[97%] h-[97%] px-2 py-2 border-2 rounded-[45px] '>
+                <div className='w-[100%] h-[100%] md:w-[100vw] h-[100vh] flex justify-center items-center'>
+                  <div className='w-[97%] h-[97%] md:px-2 md:py-2 border-2 rounded-xl md:rounded-[45px]'>
                     <Routes>
                       <Route path='/' element={!isLoading && <LoginCard title={'Login'} />} />
                       <Route path='/signup' element={<SignUpCard title={'Signup'}/>} />
                       <Route path='/auth/delete' element={<DeleteUserAuthPage/>}/>
                       <Route path='/home' element={isLoggedIn ? <HomePage/> : <LoginCard title={'Login'}/>}/>
+                      <Route path='/home/profile' element={<ProfilePage/>}/>
                       <Route path='/post' element={<CreatePostPage/>}/>
                       <Route path='/post/:userid' element={<SpecificPostsPostPage/>} />
                       <Route path='/activities/:postid' element={<PostActivitiesPage/>}/>

@@ -12,7 +12,7 @@ function DeleteUserAccountPage () {
         <div className="w-[100%] h-[100%] flex flex-col justify-center items-center">
 
             <Link to={'/settings'}>
-                <div className="absolute top-10 right-20">
+                <div className="absolute top-10 right-10 md:right-20">
                     <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
                     Go Back
                     </button>
@@ -21,10 +21,10 @@ function DeleteUserAccountPage () {
             
 
             <div>
-                <div className="text-2xl font-bold mb-5">
+                <div className="text-lg text-center md:text-2xl font-bold mb-5">
                     <h1>Delete Your Account ? {firstName} {lastName} ({instaId})</h1>
                 </div>
-                <div className="text-lg font-bold text-red-700">
+                <div className="text-sm text-center md:text-lg font-bold text-red-700">
                     <p>Are you sure you want to delete your account? This action is permanent
                     and your data will be lost forever...
                     </p>

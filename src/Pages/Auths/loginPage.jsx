@@ -61,10 +61,10 @@ function LoginCard({title}){
 
     return(
         <div className="w-[100%] h-[100%] flex justify-center items-center">     
-            <div className="w-[65vw] h-[100%]">
+            <div className="hidden md:block md:w-[60vw] h-[80%] lg:w-[50vw] h-[100%]">
                 <LoginBackground/>
             </div>   
-            <div className="mx-auto my-10 shadow-md shadow-gray-600 border-slate-400 border-l-2 border-b-2 rounded-2xl sm: w-[80vw] h-[80vh]  md:w-[30vw] h-[70vh]">
+            <div className="mx-auto my-10 shadow-md shadow-gray-600 border-slate-400 border-l-2 border-b-2 rounded-2xl sm: w-[80vw] h-[80vh]  md:w-[40vw] h-[70vh] lg:w-[30vw]">
                 
                 <div className="flex flex-col justify-center items-center">
                     <div className="flex justify-center items-center">

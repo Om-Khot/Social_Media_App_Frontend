@@ -13,12 +13,12 @@ function StoriesCompo({storyDetails}) {
     }
 
     return (
-        <div className="w-[120px] h-[120px]  flex flex-col items-center justify-center" onClick={onClickHandler}>
-            <div className="w-[100px] h-[100px] rounded-full">
+        <div className="w-[37%] h-[93%] md:w-[9%] md:h-[90%] flex flex-col cursor-pointer" onClick={onClickHandler}>
+            <div className="w-[80%] h-[80%]">
                 <img src={storyDetails.author.profileImage} alt="profile" className="w-[100%] h-[100%] rounded-full border-2 border-gray-300 object-cover" />
             </div>
-            <div className="flex flex-col items-center w-[100%] h-[20px] p-1">
-                <div className="text-sm text-gray-500">{storyDetails.author.firstName == loggedInUserDetails.firstName ? "You" : storyDetails.author.firstName} {storyDetails.author.lastName == loggedInUserDetails.lastName ? "" : storyDetails.author.lastName}</div>
+            <div className="w-[80%] flex items-center justify-center h-[20%] overflow-hidden">
+                <div className="text-sm text-gray-500">{storyDetails.author.firstName == loggedInUserDetails.firstName ? "You" : storyDetails.author.firstName}</div>
             </div>
         </div>
     )

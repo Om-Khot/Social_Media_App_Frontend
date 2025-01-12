@@ -62,22 +62,26 @@ function CreatePostPage(){
     }
 
     return(
-        <div className="w-[100%] h-[100%] flex">
+        <div className="w-[100%] h-[100%] flex md:justify-center">
 
-            <div className="w-[20%] flex-cols">
+            <div className="hidden md:block lg:w-[25%] flex-cols xl:w-[20%]">
                 <div className="w-[100%] h-[10%] flex">
                     <InstaLogo/>
                     <MySvgComponent/>
                 </div>
-                <div className="w-[100%] h-[85%] flex-cols justify-center items-center">
-                    <ProfilePage followers={23} following={500}/>
+                <div className="hidden md:block md:w-[100%] h-[85%] flex-cols justify-center items-center">
+                    <ProfilePage />
                 </div>                
             </div>    
 
-            <div className="w-[80%] h-[100%] bg-[#f5f5f5] rounded-[45px] border-2 px-8 py-5">
+            <div className="w-[100%] md:w-[80%] h-[100%] bg-[#f5f5f5] md:rounded-[45px] border-2 px-4 md:px-8 md:py-5">
                 
                 <div className="mb-8">
-                    <h1 className="w-[100%] h-[10%] text-2xl font-bold text-gray-500">Create Your New Post</h1>
+                    <div className="w-[100%] h-[10%] flex md:hidden">
+                        <InstaLogo/>                        
+                        <MySvgComponent/>
+                    </div>
+                    <h1 className="w-[100%] h-[10%] text-lg md:text-2xl font-bold text-gray-500">Create Your New Post</h1>
                 </div>
 
                 {
@@ -117,12 +121,12 @@ function CreatePostPage(){
                                     </div>
                 }
                 
-                {!isLoadding && <div className="w-[70%] h-[35%] flex gap-5 ">
+                {!isLoadding && <div className="w-[100%] flex flex-col md:flex-row md:w-[70%] h-[35%]  gap-5 ">
                                     <input
                                         type="text"
                                         placeholder="Caption for your post"
                                         onChange={handleCaptionChange}
-                                        className="w-[80%] h-[55px] border-slate-400 border-2 rounded-md px-4"
+                                        className="w-[100%] md:w-[80%] h-[55px] border-slate-400 border-2 rounded-md px-4"
                                     />
                                     <button
                                         onClick={onSubmitPost}
@@ -133,7 +137,7 @@ function CreatePostPage(){
                                 </div>
                 }
 
-                {isLoadding &&  <div className="w-[70%] h-[35%] flex gap-5 justify-center items-center">
+                {isLoadding &&  <div className="w-[100%] md:w-[70%] h-[35%] flex gap-5 justify-center items-center">
                                     <div>Uploading your post...</div>
                                     <div><LoaderButton/></div>
                                 </div>

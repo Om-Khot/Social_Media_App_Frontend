@@ -75,19 +75,19 @@ function UserDetailsCreatePage() {
 
 
     return (
-        <div className="w-[100%] h-[100%] px-10 py-4">
+        <div className="w-[100%] h-[100%] md:px-10">
 
             {isLoadding && <div className="text-2xl font-bold text-gray-600 text-center">Wait for changes to be done..</div>}
 
-            {!isLoadding && <div className="w-[100%] h-[100%] px-10 py-4">
+            {!isLoadding && <div className="w-[100%] h-[100%] px-4 md:px-10 py-4">
 
-                                <div className="text-2xl font-bold text-gray-600 flex items-center">
+                                <div className="text-lg md:text-2xl font-bold text-gray-600 flex items-center">
                                     <InstaLogo/>                
                                     <h1>Manage Your Profile</h1>
                                 </div>
 
-                                <div className="mt-8 flex items-center gap-4">
-                                    <h1 className="text-xl font-semibold text-gray-600">Change your First Name:</h1>
+                                <div className="mt-4 md:mt-8 flex items-center gap-4">
+                                    <h1 className="text-md md:text-xl font-semibold text-gray-600">Change your First Name:</h1>
                                     <input
                                         type="text" 
                                         name="firstName"
@@ -97,8 +97,8 @@ function UserDetailsCreatePage() {
                                     />                                                    
                                 </div>
 
-                                <div className="mt-8 flex items-center gap-4">
-                                    <h1 className="text-xl font-semibold text-gray-600">Change your Last Name:</h1>
+                                <div className="mt-4 md:mt-8 flex items-center gap-4">
+                                    <h1 className="text-md md:text-xl font-semibold text-gray-600">Change your Last Name:</h1>
                                     <input 
                                         type="text" 
                                         name="lastName"
@@ -108,9 +108,9 @@ function UserDetailsCreatePage() {
                                     />
                                 </div>
 
-                                <div className="w-[45%] mt-8 flex items-center justify-between">
-                                    <h1 className="text-xl font-semibold text-gray-600">Set your profile image:</h1>
-                                    { image ? ( <div className="flex items-center gap-4">
+                                <div className="w-[100%] md:w-[45%] mt-8 flex items-center justify-between">
+                                    <h1 className="text-md md:text-xl font-semibold text-gray-600">Set your profile image:</h1>
+                                    { image ? ( <div className="md:flex items-center gap-4">
                                                     <div className="w-[120px] h-[120px]">
                                                         {preview && <img 
                                                                         className="w-[100%] h-[100%] object-cover border-2 rounded-full" 
@@ -119,7 +119,7 @@ function UserDetailsCreatePage() {
                                                     </div>                                    
                                                     <button
                                                         onClick={() => setImage('')}
-                                                        className="mt-5 text-gray-500 hover:text-gray-700 border-2 border-gray-300 rounded-md px-4 py-2"
+                                                        className="text-sm px-1 py-1 mt-1 md:mt-5 text-gray-500 hover:text-gray-700 border-2 border-gray-300 rounded-md px-4 py-2"
                                                     >
                                                         Remove Image
                                                     </button>
@@ -142,19 +142,19 @@ function UserDetailsCreatePage() {
                                     }                           
                                 </div>
 
-                                <div className="mt-8 flex items-center gap-[124px]">
-                                    <h1 className="text-xl font-semibold text-gray-600">Set your bio:</h1>
+                                <div className="mt-4 md:mt-8 flex items-center gap-4 md:gap-[124px]">
+                                    <h1 className="text-md md:text-xl font-semibold text-gray-600">Set your bio:</h1>
                                     <input 
                                         type="text" 
                                         name="bio"
                                         value={updateProfileDetails.bio}
-                                        className="w-[50%] h-[80px] mt-2 border-2 border-gray-300 rounded-[15px] px-2 py-2"
+                                        className="w-[100%] h-[40px] md:w-[50%] h-[80px] mt-2 border-2 border-gray-300 rounded-[15px] px-2 py-2"
                                         onChange={onChangeHandler}
                                     />
                                 </div>
 
-                                <div className="mt-8 flex items-center gap-[86px]">
-                                    <h1 className="text-xl font-semibold text-gray-600">Set your gender:</h1>
+                                <div className="mt-4 md:mt-8 flex items-center gap-2 md:gap-[86px]">
+                                    <h1 className="text-md md:text-xl font-semibold text-gray-600">Set your gender:</h1>
                                     <div>
                                         <select 
                                             className="w-[100%] h-[40px] mt-2 border-2 border-gray-300 rounded-[15px] px-2 py-2"
@@ -169,7 +169,7 @@ function UserDetailsCreatePage() {
                                     </div>
                                 </div>
 
-                                <div className="mt-10">
+                                <div className="mt-8 md:mt-10">
                                     <button 
                                         onClick={onClickHandler}
                                         className="bg-blue-500 text-white px-4 py-2 rounded-md"
